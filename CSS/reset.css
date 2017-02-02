@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	background: url("http://localhost/NerviMateo.github.io/Imagen/Fondo.png");
+	background: url("../Imagen/Fondo.png");
 	font-family: 'Open Sans', sans-serif, arial;
 	line-height: 1;
 }
