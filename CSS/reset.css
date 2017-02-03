@@ -28,16 +28,35 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+.container{
+	width: 960px;
+	margin: auto;
+	position: relative;
+}
 body {
 	background: url("https://NerviMateo.github.io/Imagen/Fondo.png");
-	font-family: 'Open Sans', sans-serif, arial;
+	font-family: "Open Sans", sans-serif, arial;
 	line-height: 1;
 }
 .textcenter{
 	text-align: center;
 }
+hr, .hrcolor {
+   height: 1px;
+   border: 0;
+	 color: rgb(0,1,0);
+   background-color: rgb(0,0,0);
+}
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+}
 #Mifoto{
 	width: 150px;
+}
+h2 {
+	font-size: 20px;
+	font-weight: bold;
 }
 ol, ul {
 	list-style: none;
@@ -48,7 +67,6 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
-	content: none;
 }
 table {
 	border-collapse: collapse;
