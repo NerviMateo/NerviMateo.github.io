@@ -36,7 +36,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	background: url("https://NerviMateo.github.io/Imagen/Fondo.png");
 	font-family: "Open Sans", sans-serif, arial;
-	line-height: 1.5;
+	line-height: 1,5;
 }
 .textcenter{
 	text-align: center;
