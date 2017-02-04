@@ -38,9 +38,6 @@ body {
 	font-family: "Open Sans", sans-serif, arial;
 	line-height: 1.5;
 }
-.textcenter{
-	text-align: center;
-}
 hr, .hrcolor {
    height: 1px;
    border: 0;
@@ -51,7 +48,7 @@ h1 {
 	font-size: 30px;
 	font-weight: bold;
 }
-#Mifoto{
+#Mifoto {
 	width: 150px;
 	vertical-align: text-top;
 }
@@ -72,4 +69,11 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+.textblack{
+	font-weight: bold;
+}
+.textcenter{
+	text-align: center;
+	font-weight: bold;
 }
