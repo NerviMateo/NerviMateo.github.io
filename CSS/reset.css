@@ -28,15 +28,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+body {
+	background:rgb(255,255,255);
+	font-family: "Open Sans", sans-serif, arial;
+	line-height: 1.5;
+}
 .container{
 	width: 960px;
 	margin: auto;
 	position: relative;
-}
-body {
-	background: url("https://NerviMateo.github.io/Imagen/Fondo.png");
-	font-family: "Open Sans", sans-serif, arial;
-	line-height: 1.5;
 }
 hr, .hrcolor {
    height: 1px;
