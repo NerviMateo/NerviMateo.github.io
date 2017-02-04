@@ -53,14 +53,24 @@ h1 {
 	vertical-align: text-top;
 }
 #tablaimagen{
-	float: right;;
+	float: right;
+	border-collapse: separate;
+	border-spacing: 10px;
 }
 h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
+#tablaExperienciaprofesional{
+	border-collapse: separate;
+	border-spacing: 10px;
+}
 ol, ul {
 	list-style: none;
+}
+#tablaEducacion{
+	border-collapse: separate;
+	border-spacing: 10px;
 }
 blockquote, q {
 	quotes: none;
