@@ -67,6 +67,12 @@ h2 {
 ol, ul {
 	list-style: none;
 }
+#Linkedin{
+	width: 50px;
+}
+#Facebook{
+	width: 52px;
+}
 #tablaEducacion{
 	border-collapse: separate;
 	border-spacing: 10px;
