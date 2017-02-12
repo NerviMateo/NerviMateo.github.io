@@ -56,10 +56,10 @@ h1 {
 	border-collapse: separate;
 	border-spacing: 10px;
 }
-.h2  {
+.h2 {
 	font-size: 20px;
 	font-weight: bold;
-
+	text-align: center;
 }
 .active{
 	background-color: rgb(0, 0, 0);
