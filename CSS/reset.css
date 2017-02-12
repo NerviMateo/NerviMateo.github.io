@@ -97,3 +97,6 @@ q:before, q:after {
 	text-align: center;
 	font-weight: bold;
 }
+#MyIframe{
+	width: 100%;
+}

@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="CSS/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style media="screen">
+  button {
+    -webkit-transition: background-color 0.2s linear;
+    border-radius:4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    background-color: #EBEDEF;
+    background-position: center top;
+    background-repeat: repeat-x;
+    border: 1px solid #D6DBDF;
+    padding: 2px 8px 4px;
+    font-size:1em;
+  }
+  button:hover {
+    background-color: #222;
+    color: rgb(255,255,255);
+  }
+  }
+  .wipe {
+    font-size: 28px;
+    height: auto;
+    width: auto;
+  }
+  .slide {
+    position: absolute;
+    left: 0;
+    top: 100px;
+  }
+  .chain {
+    opacity: 0;
+  }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
@@ -28,7 +60,6 @@
 
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="#Minombre"><a href="#">Home</a></li>
           <li><a href="#Experienciaprofesional"><strong>Experiencia Profesional</strong></a></li>
           <li><a href="#Habilidadesyconocimientos"><strong>Habilidades y conocimientos</strong></a></li>
           <li><a href="#Educación"><strong>Educación</strong></a></li>
@@ -39,7 +70,6 @@
       </div>
     </div>
   </nav>
-
   <div class="container">
     <h1 id="Minombre"> Antonio Javier Mateo Castillo </h1>
 
@@ -74,96 +104,176 @@
     </p>
     <hr>
     <h2 class="h2" id="Experienciaprofesional"> Experiencia profesional </h2>
-    <table id="tablaExperienciaprofesional">
-      <tbody>
-        <tr class="textcenter">
-          <td> Empresa/Organización</td>
-          <td> Puesto</td>
-          <td> Localización</td>
-          <td> Periodo</td>
+    <button id="ExperienceInButton">Ver experiencia</button>
+    <button id="ExpirienceOutButton">Quitar experiencia</button>
+
+    <div id="ExpirienceTarget">
+
+      <table id="tablaExperienciaprofesional">
+        <tbody>
+          <tr class="textcenter">
+            <td> Empresa/Organización</td>
+            <td> Puesto</td>
+            <td> Localización</td>
+            <td> Periodo</td>
+          </tr>
+        </tbody>
+        <tr>
+          <td> Trompecoco Producciones Infantiles</td>
+          <td> Animador, limpiador, cocinero, etc</td>
+          <td> Málaga</td>
+          <td> 2012-Actualidad</td>
         </tr>
-      </tbody>
-      <tr>
-        <td> Trompecoco Producciones Infantiles</td>
-        <td> Animador, limpiador, cocinero, etc</td>
-        <td> Málaga</td>
-        <td> 2012-Actualidad</td>
-      </tr>
-      <tr>
-        <td> I.E.S. Universidad Laboral de Málaga</td>
-        <td> Prácticas Profesor Biología y Geología</td>
-        <td> Málaga</td>
-        <td> Abril 2016 - Junnio 2016</td>
-      </tr>
-      <tr>
-        <td> Mercadona S.A.</td>
-        <td> Reponerdor, limpiador, etc</td>
-        <td> Fuengirola</td>
-        <td> Junio 2011-Septiembre 2011</td>
-      </tr>
-    </table>
+        <tr>
+          <td> I.E.S. Universidad Laboral de Málaga</td>
+          <td> Prácticas Profesor Biología y Geología</td>
+          <td> Málaga</td>
+          <td> Abril 2016 - Junnio 2016</td>
+        </tr>
+        <tr>
+          <td> Mercadona S.A.</td>
+          <td> Reponerdor, limpiador, etc</td>
+          <td> Fuengirola</td>
+          <td> Junio 2011-Septiembre 2011</td>
+        </tr>
+      </table>
+    </div>
+    <!-- load dojo and provide config via data attribute -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+    <script>
+    require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
+      var wipeOutButton = dom.byId("ExpirienceOutButton"),
+      wipeInButton = dom.byId("ExperienceInButton"),
+      wipeTarget = dom.byId("ExpirienceTarget");
+      on(wipeOutButton, "click", function(evt){
+        fx.wipeOut({ node: wipeTarget }).play();
+      });
+      on(wipeInButton, "click", function(evt){
+        fx.wipeIn({ node: wipeTarget }).play();
+      });
+    });
+    </script>
+
     <hr>
     <h2 class="h2" id="Habilidadesyconocimientos"> Habilidades y conocimientos</h2>
-    <br>
-    <ul>
-      <li><strong class="textblack">Sociales:</strong> Gestión de equipo, trato al público, organización de eventos.</li>
-      <li><strong class="textblack">Sistemas de Información Geográfica(SIG): </strong>Plataforma Arcgis.</li>
-      <li><strong class="textblack">Office:</strong> Paquete de Microsoft, libre office.</li>
-      <li><strong class="textblack">Desarrollo Web:</strong> Python, HTML, CSS, JavaScript.</li>
-      <li><strong class="textblack">Enseñanza:</strong> Durante las prácticas de profesor estuve en un centro compensatorio, en el cual tuve que llevar las riendas de clases conflictivas y alumnado complicado. </li>
-    </ul>
+    <button id="KnowlodgeInButton">Ver experiencia</button>
+    <button id="KnowlodgeOutButton">Quitar experiencia</button>
+
+    <div id="KnowlodgeTarget">
+      <br>
+      <ul>
+        <li><strong class="textblack">Sociales:</strong> Gestión de equipo, trato al público, organización de eventos.</li>
+        <li><strong class="textblack">Sistemas de Información Geográfica(SIG): </strong>Plataforma Arcgis.</li>
+        <li><strong class="textblack">Office:</strong> Paquete de Microsoft, libre office.</li>
+        <li><strong class="textblack">Desarrollo Web:</strong> Python, HTML, CSS, JavaScript.</li>
+        <li><strong class="textblack">Enseñanza:</strong> Durante las prácticas de profesor estuve en un centro compensatorio, en el cual tuve que llevar las riendas de clases conflictivas y alumnado complicado. </li>
+      </ul>
+    </div>
+    <!-- load dojo and provide config via data attribute -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+    <script>
+    require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
+      var wipeOutButton = dom.byId("KnowlodgeOutButton"),
+      wipeInButton = dom.byId("KnowlodgeInButton"),
+      wipeTarget = dom.byId("KnowlodgeTarget");
+      on(wipeOutButton, "click", function(evt){
+        fx.wipeOut({ node: wipeTarget }).play();
+      });
+      on(wipeInButton, "click", function(evt){
+        fx.wipeIn({ node: wipeTarget }).play();
+      });
+    });
+    </script>
     <hr>
     <h2 class="h2" id="Educación"> Educación </h2>
-    <table id="tablaEducacion">
-      <tbody>
-        <tr class="textcenter">
-          <td> Título</td>
-          <td> Entidad</td>
-          <td> Promoción</td>
+    <button id="EducationInButton">Ver Educación</button>
+    <button id="EducationOutButton">Quitar Educación</button>
+
+    <div id="EducationTarget">
+
+      <table id="tablaEducacion">
+        <tbody>
+          <tr class="textcenter">
+            <td> Título</td>
+            <td> Entidad</td>
+            <td> Promoción</td>
+          </tr>
+        </tbody>
+        <tr>
+          <td> Máster GIS</td>
+          <td> ESRI (España)</td>
+          <td> Actualmente</td>
         </tr>
-      </tbody>
-      <tr>
-        <td> Máster GIS</td>
-        <td> ESRI (España)</td>
-        <td> Actualmente</td>
-      </tr>
-      <tr>
-        <td> Máster de Educación en Biología y Geología</td>
-        <td> Universidad de Málaga</td>
-        <td> 2016</td>
-      </tr>
-      <tr>
-        <td> Grado en Biología</td>
-        <td> Universidad de Málaga</td>
-        <td> 2015</td>
-      </tr>
-    </table>
+        <tr>
+          <td> Máster de Educación en Biología y Geología</td>
+          <td> Universidad de Málaga</td>
+          <td> 2016</td>
+        </tr>
+        <tr>
+          <td> Grado en Biología</td>
+          <td> Universidad de Málaga</td>
+          <td> 2015</td>
+        </tr>
+      </table>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+    <script>
+    require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
+      var wipeOutButton = dom.byId("EducationOutButton"),
+      wipeInButton = dom.byId("EducationInButton"),
+      wipeTarget = dom.byId("EducationTarget");
+      on(wipeOutButton, "click", function(evt){
+        fx.wipeOut({ node: wipeTarget }).play();
+      });
+      on(wipeInButton, "click", function(evt){
+        fx.wipeIn({ node: wipeTarget }).play();
+      });
+    });
+    </script>
+
     <hr>
 
     <h2 class="h2" id="Trabajosadestacar">Trabajos a destacar</h2>
-    <br>
-    <p>
-      A lo largo de estos años he realizado trabajos, que para mí han sido importantes, como:
-    </p>
-    <ul>
-      <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-LRUpnWHI4MkxwTjA/view?usp=sharing"> Trabajo Fin de Grado en Biología</a> Trabajo sobre el Atlas Florístico de Fuengirola (Málaga)</li>
-      <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-LSHVDREY2TkZEUU0/view?usp=sharing"> Trabajo Fin de Máster de Educación en Biología y Geología</a> Trabajo que trata de cómo actuar en un centro educativo en zona deprimida.</li>
-      <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-Lam5NYWM0QXpkSE0/view?usp=sharing"> Apoyo a realización de una publicación</a> Necesitaron de mi ayuda a la hora de realizar tareas con la parte relacionada con los SIG.</li>
+    <button id="WorkInButton">Ver Trabajos a destacar</button>
+    <button id="WorkOutButton">Quitar Trabajos a destacar</button>
 
-    </ul>
-    <hr>
-    <h2 class="h2" id="Perfilessociales">Perfiles sociales</h2>
-    <br>
-    <ul>
-      <li> <a href = "https://www.linkedin.com/in/antonio-javier-mateo-castillo-01a7a983?trk=nav_responsive_tab_profile"> <img id="Linkedin" src="Imagen/Linkedin.png" alt="Imagen Linkedin"></a></li>
-      <li> <a href = "https://www.facebook.com/antonio.mateo.357?ref=bookmarks"> <img id="Facebook" src="Imagen/Facebook.png" alt="Imagen Facebook"></a></li>
-    </ul>
+    <div id="WorkTarget">
+      <br>
+      <p>
+        A lo largo de estos años he realizado trabajos, que para mí han sido importantes, como:
+      </p>
+      <ul>
+        <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-LRUpnWHI4MkxwTjA/view?usp=sharing"> Trabajo Fin de Grado en Biología</a> Trabajo sobre el Atlas Florístico de Fuengirola (Málaga)</li>
+        <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-LSHVDREY2TkZEUU0/view?usp=sharing"> Trabajo Fin de Máster de Educación en Biología y Geología</a> Trabajo que trata de cómo actuar en un centro educativo en zona deprimida.</li>
+        <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-Lam5NYWM0QXpkSE0/view?usp=sharing"> Apoyo a realización de una publicación</a> Necesitaron de mi ayuda a la hora de realizar tareas con la parte relacionada con los SIG.</li>
+      </ul>
+      <iframe height="400" src="https://www.dropbox.com/s/ua4iykmzk3pnb09/AtlasFlor%C3%ADsticoFuengirola.pdf?dl=0" width="500"></iframe>
+      <hr>
+      <h2 class="h2" id="Perfilessociales">Perfiles sociales</h2>
+      <br>
+      <ul>
+        <li> <a href = "https://www.linkedin.com/in/antonio-javier-mateo-castillo-01a7a983?trk=nav_responsive_tab_profile"> <img id="Linkedin" src="Imagen/Linkedin.png" alt="Imagen Linkedin"></a></li>
+        <li> <a href = "https://www.facebook.com/antonio.mateo.357?ref=bookmarks"> <img id="Facebook" src="Imagen/Facebook.png" alt="Imagen Facebook"></a></li>
+      </ul>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+    <script>
+    require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
+      var wipeOutButton = dom.byId("WorkOutButton"),
+      wipeInButton = dom.byId("WorkInButton"),
+      wipeTarget = dom.byId("WorkTarget");
+      on(wipeOutButton, "click", function(evt){
+        fx.wipeOut({ node: wipeTarget }).play();
+      });
+      on(wipeInButton, "click", function(evt){
+        fx.wipeIn({ node: wipeTarget }).play();
+      });
+    });
+    </script>
+
     <hr>
     <h2 class="h2" id="Formulario">Formulario</h2>
     <form action="mailto:antoniojmateoc@gmail.com" method="GET">
-      <label for="to">Para:</label>
-      <input id="to" type="email">
-
       <label for="topic">Temática: </label>
       <select id="topic" name="topic">
         <option>-- Elige un tema --</option>
@@ -182,6 +292,6 @@
     </form>
     <a href="#Experienciaprofesional"> Experiencia profesional</a> <a href="#Habilidadesyconocimientos"> Habilidades y conocimientos</a> <a href="#Educación"> Educación</a> <a href="#Trabajosadestacar">Trabajos a destacar</a> <a href="#Perfilessociales">Perfiles sociales</a> <a href="#Formulario">Puesta en contacto</a>
   </div>
-<script src="JavaScript/main.js"> </script>
+  <script src="JavaScript/main.js"> </script>
 </body>
 </html>
