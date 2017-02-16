@@ -8,38 +8,6 @@
   <link rel="stylesheet" href="CSS/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <style media="screen">
-  button {
-    -webkit-transition: background-color 0.2s linear;
-    border-radius:4px;
-    -moz-border-radius: 4px 4px 4px 4px;
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    background-color: #EBEDEF;
-    background-position: center top;
-    background-repeat: repeat-x;
-    border: 1px solid #D6DBDF;
-    padding: 2px 8px 4px;
-    font-size:1em;
-  }
-  button:hover {
-    background-color: #222;
-    color: rgb(255,255,255);
-  }
-}
-.wipe {
-  font-size: 28px;
-  height: auto;
-  width: auto;
-}
-.slide {
-  position: absolute;
-  left: 0;
-  top: 100px;
-}
-.chain {
-  opacity: 0;
-}
-</style>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
@@ -103,10 +71,11 @@
       Para que veas un poco más como soy trabajando como <a href="https://www.facebook.com/trompecoco/photos/a.732613580187796.1073741845.109238212525339/732613700187784/?type=3&theater"> animador. </a>
     </p>
     <hr>
-    <h2 class="h2" id="Experienciaprofesional"> Experiencia profesional </h2>
-    <button id="ExperienceInButton">Ver experiencia</button>
-    <button id="ExpirienceOutButton">Quitar experiencia</button>
-
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+    <h2 class="h2" id="Experienciaprofesional">
+      <button id="ExperienceInButton">Ver experiencia</button>
+      <button id="ExpirienceOutButton">Quitar experiencia</button>
+    </h2>
     <div id="ExpirienceTarget">
 
       <table id="tablaExperienciaprofesional">
@@ -139,7 +108,6 @@
       </table>
     </div>
     <!-- load dojo and provide config via data attribute -->
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
     <script>
     require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
       var wipeOutButton = dom.byId("ExpirienceOutButton"),
@@ -156,8 +124,8 @@
 
     <hr>
     <h2 class="h2" id="Habilidadesyconocimientos"> Habilidades y conocimientos</h2>
-    <button id="KnowlodgeInButton">Ver experiencia</button>
-    <button id="KnowlodgeOutButton">Quitar experiencia</button>
+    <button id="KnowlodgeInButton">Ver Habilidades</button>
+    <button id="KnowlodgeOutButton">Quitar habilidades</button>
 
     <div id="KnowlodgeTarget">
       <br>
@@ -170,7 +138,7 @@
       </ul>
     </div>
     <!-- load dojo and provide config via data attribute -->
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+
     <script>
     require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
       var wipeOutButton = dom.byId("KnowlodgeOutButton"),
@@ -216,7 +184,7 @@
         </tr>
       </table>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+
     <script>
     require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
       var wipeOutButton = dom.byId("EducationOutButton"),
@@ -256,7 +224,7 @@
         <li> <a href = "https://www.facebook.com/antonio.mateo.357?ref=bookmarks"> <img id="Facebook" src="Imagen/Facebook.png" alt="Imagen Facebook"></a></li>
       </ul>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, isDebug: true"></script>
+
     <script>
     require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
       var wipeOutButton = dom.byId("WorkOutButton"),
@@ -274,16 +242,16 @@
     <hr>
     <h2 class="h2" id="Formulario">Formulario</h2>
     <form class="form-group" action="mailto:antoniojmateoc@gmail.com" method="GET">
-     <div class="form-group">
-       <label>Asunto:</label>
-       <input id="subject" type="text" class="form-control" name="subject" placeholder="Introduzca asunto">
-     </div>
-     <div class="form-group">
-       <label>Text</label>
-       <input  name="body" class="form-control" id="body" placeholder="Introduzca texto">
-     </div>
-     <button type="submit">Enviar</button>
-   </form>
+      <div class="form-group">
+        <label>Asunto:</label>
+        <input id="subject" type="text" class="form-control" name="subject" placeholder="Introduzca asunto">
+      </div>
+      <div class="form-group">
+        <label>Text</label>
+        <input  name="body" class="form-control" id="body" placeholder="Introduzca texto">
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
     <a href="#Experienciaprofesional"> Experiencia profesional</a> <a href="#Habilidadesyconocimientos"> Habilidades y conocimientos</a> <a href="#Educación"> Educación</a> <a href="#Trabajosadestacar">Trabajos a destacar</a> <a href="#Perfilessociales">Perfiles sociales</a> <a href="#Formulario">Puesta en contacto</a>
   </div>
   <script src="JavaScript/main.js"> </script>

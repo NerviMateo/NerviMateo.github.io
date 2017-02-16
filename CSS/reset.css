@@ -44,7 +44,7 @@ hr, .hrcolor {
    background-color: rgb(0,0,0);
 }
 h1 {
-	font-size: 30px;
+	font-size: 50px;
 	font-weight: bold;
 }
 #Mifoto {
@@ -97,3 +97,32 @@ q:before, q:after {
 	text-align: center;
 	font-weight: bold;
 }
+button {
+	-webkit-transition: background-color 0.2s linear;
+	border-radius:4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	background-color: #EBEDEF;
+	background-position: center top;
+	background-repeat: repeat-x;
+	border: 1px solid #D6DBDF;
+	padding: 2px 8px 4px;
+	font-size:1em;
+}
+button:hover {
+	background-color: #222;
+	color: rgb(255,255,255);
+}
+}
+.wipe {
+font-size: 28px;
+height: auto;
+width: auto;
+}
+.slide {
+position: absolute;
+left: 0;
+top: 100px;
+}
+.chain {
+opacity: 0;
