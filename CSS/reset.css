@@ -113,7 +113,6 @@ button:hover {
 	background-color: #222;
 	color: rgb(255,255,255);
 }
-}
 .wipe {
 font-size: 28px;
 height: auto;
@@ -126,3 +125,4 @@ top: 100px;
 }
 .chain {
 opacity: 0;
+}

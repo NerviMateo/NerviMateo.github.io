@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 }());
-  var $myBtn = $('h2');
+  var $myBtn = $('h1');
 
   // Le añado un listener (o disparador), cuando se haga click
   $myBtn.click(function(){

@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <title> Curriculum Antonio Javier Mateo Castillo </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
-    <div class="container">
+    <div class="container-fluid">
 
       <div class="navbar-header">
         <button  type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" >
-          <span class="sr-only"></span>
+          <span class="sr-only">Desplegar navegación</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -77,7 +78,6 @@
       <button id="ExpirienceOutButton">Quitar experiencia</button>
     </h2>
     <div id="ExpirienceTarget">
-
       <table id="tablaExperienciaprofesional">
         <tbody>
           <tr class="textcenter">
@@ -123,10 +123,10 @@
     </script>
 
     <hr>
-    <h2 class="h2" id="Habilidadesyconocimientos"> Habilidades y conocimientos</h2>
-    <button id="KnowlodgeInButton">Ver Habilidades</button>
-    <button id="KnowlodgeOutButton">Quitar habilidades</button>
-
+    <h2 class="h2" id="Habilidadesyconocimientos">
+    <button id="KnowlodgeInButton">Ver Habilidades y conocimientos</button>
+    <button id="KnowlodgeOutButton">Quitar Habilidades y conocimientos</button>
+</h2>
     <div id="KnowlodgeTarget">
       <br>
       <ul>
@@ -138,7 +138,6 @@
       </ul>
     </div>
     <!-- load dojo and provide config via data attribute -->
-
     <script>
     require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
       var wipeOutButton = dom.byId("KnowlodgeOutButton"),
@@ -153,12 +152,11 @@
     });
     </script>
     <hr>
-    <h2 class="h2" id="Educación"> Educación </h2>
+    <h2 class="h2" id="Educación">
     <button id="EducationInButton">Ver Educación</button>
     <button id="EducationOutButton">Quitar Educación</button>
-
+    </h2>
     <div id="EducationTarget">
-
       <table id="tablaEducacion">
         <tbody>
           <tr class="textcenter">
@@ -198,13 +196,11 @@
       });
     });
     </script>
-
     <hr>
-
-    <h2 class="h2" id="Trabajosadestacar">Trabajos a destacar</h2>
+    <h2 class="h2" id="Trabajosadestacar">
     <button id="WorkInButton">Ver Trabajos a destacar</button>
     <button id="WorkOutButton">Quitar Trabajos a destacar</button>
-
+    </h2>
     <div id="WorkTarget">
       <br>
       <p>
@@ -216,29 +212,27 @@
         <li> <a href = "https://drive.google.com/file/d/0B3-1RSU767-Lam5NYWM0QXpkSE0/view?usp=sharing"> Apoyo a realización de una publicación</a> Necesitaron de mi ayuda a la hora de realizar tareas con la parte relacionada con los SIG.</li>
       </ul>
       <iframe src="https://nervimateo.github.io/AtlasFlor%C3%ADsticoFuengirola.pdf" height="500" width="900"></iframe>
-      <hr>
+      <script>
+      require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
+        var wipeOutButton = dom.byId("WorkOutButton"),
+        wipeInButton = dom.byId("WorkInButton"),
+        wipeTarget = dom.byId("WorkTarget");
+        on(wipeOutButton, "click", function(evt){
+          fx.wipeOut({ node: wipeTarget }).play();
+        });
+        on(wipeInButton, "click", function(evt){
+          fx.wipeIn({ node: wipeTarget }).play();
+        });
+      });
+      </script>
+</div>
+    <hr>
       <h2 class="h2" id="Perfilessociales">Perfiles sociales</h2>
       <br>
       <ul>
         <li> <a href = "https://www.linkedin.com/in/antonio-javier-mateo-castillo-01a7a983?trk=nav_responsive_tab_profile"> <img id="Linkedin" src="Imagen/Linkedin.png" alt="Imagen Linkedin"></a></li>
         <li> <a href = "https://www.facebook.com/antonio.mateo.357?ref=bookmarks"> <img id="Facebook" src="Imagen/Facebook.png" alt="Imagen Facebook"></a></li>
       </ul>
-    </div>
-
-    <script>
-    require(["dojo/fx", "dojo/on", "dojo/dom", "dojo/domReady!"], function(fx, on, dom) {
-      var wipeOutButton = dom.byId("WorkOutButton"),
-      wipeInButton = dom.byId("WorkInButton"),
-      wipeTarget = dom.byId("WorkTarget");
-      on(wipeOutButton, "click", function(evt){
-        fx.wipeOut({ node: wipeTarget }).play();
-      });
-      on(wipeInButton, "click", function(evt){
-        fx.wipeIn({ node: wipeTarget }).play();
-      });
-    });
-    </script>
-
     <hr>
     <h2 class="h2" id="Formulario">Formulario</h2>
     <form class="form-group" action="mailto:antoniojmateoc@gmail.com" method="GET">
@@ -255,5 +249,13 @@
     <a href="#Experienciaprofesional"> Experiencia profesional</a> <a href="#Habilidadesyconocimientos"> Habilidades y conocimientos</a> <a href="#Educación"> Educación</a> <a href="#Trabajosadestacar">Trabajos a destacar</a> <a href="#Perfilessociales">Perfiles sociales</a> <a href="#Formulario">Puesta en contacto</a>
   </div>
   <script src="JavaScript/main.js"> </script>
+  <p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="¡CSS Válido!" />
+    </a>
+</p>
+
 </body>
 </html>
