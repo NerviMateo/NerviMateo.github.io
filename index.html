@@ -9,6 +9,18 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+   // Google Drive edit -> https://goo.gl/L2ZBx6
+   var spreadsheetID = '1jIIa4faLfBVBRHHg2VMW7hbBndch1swZjBLU8YO4lc4',
+   spreadsheetTAB = 1,
+   spreadsheetURL = 'https://spreadsheets.google.com/feeds/list/' + spreadsheetID + '/' + spreadsheetTAB + '/public/values';
+
+   var datos;
+   // Pedimos un recurso por AJAX usando JSON
+   $.getJSON( spreadsheetURL + '?alt=json', function( data ) {
+     console.log(data);
+   });
+   </script>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
@@ -97,7 +109,7 @@
           <td> I.E.S. Universidad Laboral de Málaga</td>
           <td> Prácticas Profesor Biología y Geología</td>
           <td> Málaga</td>
-          <td> Abril 2016 - Junnio 2016</td>
+          <td> Abril 2016 - Junio 2016</td>
         </tr>
         <tr>
           <td> Mercadona S.A.</td>
