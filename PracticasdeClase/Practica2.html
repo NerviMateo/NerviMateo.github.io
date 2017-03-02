@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+  <title>Simple Map</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+  <style>
+  html, body, .container, #map {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    margin:0;
+    font-family: "Open Sans";
+  }
+  #map {
+    padding:0;
+  }
+  #layerListPane{
+    width:25%;
+    }
+    #listLayer {
+       display: block;
+       position: absolute;
+       z-index: 2;
+       top: 5px;
+       right: 5px;
+  .esriLayer{
+    background-color: #fff;
+  }
+  .esriLayerList .esriList{
+    border-top:none;
+  }
+  .esriLayerList .esriTitle {
+    background-color: #fff;
+    border-bottom:none;
+  }
+  .esriLayerList .esriList ul{
+    background-color: #fff;
+  }
+  #busqueda {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    left: 74px;
+  }
+  </style>
+  <script>var dojoConfig = { parseOnLoad: true };</script>
+  <script src="https://js.arcgis.com/3.19/"></script>
+  <script>
+  var map;
+  require(["esri/map",
+  "esri/layers/ArcGISDynamicMapServiceLayer",
+  "esri/dijit/LayerList",
+  "esri/dijit/Search",
+  "esri/layers/FeatureLayer",
+  "esri/InfoTemplate",
+  "dijit/layout/BorderContainer",
+  "dijit/layout/ContentPane",
+  "dojo/domReady!"],
+  function(Map,
+    ArcGISDynamicMapServiceLayer,
+    LayerList,
+    Search,
+    FeatureLayer,
+    InfoTemplate)
+    {
+      map = new Map("map", {
+        basemap: "topo",
+        center: [-122.45, 37.75], 
+        zoom: 13
+      });
+      var dinamicLayer = new ArcGISDynamicMapServiceLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer");
+      map.addLayer(dinamicLayer);
+
+      var widgetLayer = new  LayerList(
+        {map: map,
+          showLegend: true,
+          showSubLayers: true,
+          showOpacitySlider: true,
+          layers: {layer: dinamicLayer,
+            id: "U.S.A.",
+            }
+          }, "listLayer");
+          widgetLayer.startup();
+
+          var busqueda = new Search({
+            enableButtonMode: true,
+            enableInfoWindow: true,
+            showInfoWindowOnSelect: true,
+            map: map
+          }, "busqueda");
+          var sources = busqueda.get("sources");
+          sources.push({
+             featureLayer: new FeatureLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/0"),
+             searchFields: ["areaname"],
+             displayField: "areaname",
+             exactMatch: false,
+             outFields: ["areaname", "pop2000"],
+             name: "Ciudades",
+             placeholder: "Chicago",
+             maxResults: 6,
+             maxSuggestions: 6,
+             infoTemplate: new InfoTemplate("${areaname}", "Población: ${pop2000} habitantes"),
+             enableSuggestions: true,
+             minCharacters: 0
+          });
+          sources.push({
+             featureLayer: new FeatureLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2"),
+             searchFields: ["state_name"],
+             displayField: "state_name",
+             exactMatch: false,
+             name: "Estados",
+             outFields: ["*"],
+             placeholder: "North Dakota",
+             maxResults: 6,
+             maxSuggestions: 6,
+             infoTemplate: new InfoTemplate("${state_name}", "Subregion: ${sub_region}</br>Población: ${pop2000} habitantes"),
+             enableSuggestions: true,
+             minCharacters: 0
+          });
+          busqueda.set("sources", sources);
+          busqueda.startup();
+        });
+        </script>
+      </head>
+      <body class="claro">
+
+    <div id="busqueda"></div>
+    <div id="layerListPane" >
+      <div id="listLayer"></div>
+    </div>
+    <div id="map"></div>
+      </body>
+      </html>

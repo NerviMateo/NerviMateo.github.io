@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+  <title> Antipodas </title>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+  <link rel="stylesheet" href="antiantipodas.css">
+  <style>
+  html, body,{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+  <script src="https://js.arcgis.com/3.19/"></script>
+  <script>
+  require(["esri/map",
+  "esri/tasks/query",
+  "dojo/Deferred",
+  "esri/geometry/Point",
+  "esri/geometry/webMercatorUtils",
+  "dojo/on",
+  "dojo/domReady!"],
+  function(Map,
+    Query,
+    Deferred,
+    Point,
+    webMercatorUtils,
+    on) {
+
+      var map1 = new Map("map1", {
+        center: [-4, 35.5],
+        zoom: 8,
+        basemap: "topo"
+      });
+      var map2 = new Map("map2", {
+        basemap: "topo",
+        center: [-4, 35.5],
+        zoom: 8
+      });
+      map1.on("mouse-down", function(){
+        var extent = map1.extent;
+        var zoom = map1.getZoom();
+
+        var center1 = extent.getCenter();
+        var centerLatitudLongitud = webMercatorUtils.xyToLngLat(center1.x, center1.y);
+
+        var latitud = - centerLatitudLongitud[1];
+        var longitud;
+        if (centerLatitudLongitud[0] > 0) {
+          longitud = centerLatitudLongitud[0] - 180;
+        }
+        else{
+          longitud = centerLatitudLongitud[0] + 180;
+        }
+        var center2 = webMercatorUtils.lngLatToXY(longitud, latitud);
+
+        var centermap2 = new Point(center2[0], center2[1], map1.spatialReference);
+
+        if(map1.loaded){
+          map2.centerAndZoom(centermap2, zoom);
+        };
+        map1.on("zoom-end", function(evt){
+          var zoom = evt.level;
+          map2.setZoom(zoom)
+        });
+          });
+          map2.on("mouse-down", function(){
+            var extent2 = map2.extent;
+            var zoom2 = map2.getZoom();
+
+            var center3 = extent2.getCenter();
+            var centerLatitudLongitud2 = webMercatorUtils.xyToLngLat(center3.x, center3.y);
+
+            var latitud2 = - centerLatitudLongitud2[1];
+            var longitud2;
+            if (centerLatitudLongitud2[0] > 0) {
+              longitud2 = centerLatitudLongitud2[0] - 180;
+            }
+            else{
+              longitud2 = centerLatitudLongitud2[0] + 180;
+            }
+            var center4 = webMercatorUtils.lngLatToXY(longitud2, latitud2);
+
+            var centermap1 = new Point(center4[0], center4[1], map2.spatialReference);
+
+            if(map2.loaded){
+              map1.centerAndZoom(centermap1, zoom2);
+            };
+            map2.on("zoom-end", function(evt2){
+              var zoom2 = evt2.level;
+              map1.setZoom(zoom2)
+            });
+
+          });
+    });
+    </script>
+  </head>
+  <body>
+    <h1> Generación de Antipodas </h1>
+    <div id="map1"></div>
+    <div id="map2"></div>
+  </body>
+  </html>

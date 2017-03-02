@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+  <title>Simple Map</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+  <style>
+  html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+  <script src="https://js.arcgis.com/3.19/"></script>
+  <script>
+  var map;
+  var urlDinamica = "http://localhost:6080/arcgis/rest/services/SampleWorldCities/MapServer";
+  var urlCiudades = "http://localhost:6080/arcgis/rest/services/SampleWorldCities/MapServer/0";
+  require(["esri/map",
+  "esri/layers/ArcGISDynamicMapServiceLayer",
+  "esri/layers/GraphicsLayer",
+  "esri/tasks/query",
+  "esri/tasks/QueryTask",
+  "esri/geometry/Circle",
+  "esri/symbols/SimpleFillSymbol",
+  "esri/Color",
+  "dojo/on",
+  "esri/graphic",
+  "esri/symbols/SimpleMarkerSymbol",
+  "esri/renderers/SimpleRenderer",
+  "esri/symbols/SimpleLineSymbol",
+  "esri/layers/FeatureLayer",
+  "dojo/domReady!"],
+  function(Map,
+    ArcGISDynamicMapServiceLayer,
+    GraphicsLayer,
+    Query,
+    QueryTask,
+    Circle,
+    SimpleFillSymbol,
+    Color,
+    on,
+    Graphic,
+    SimpleMarkerSymbol,
+    SimpleRenderer,
+    SimpleLineSymbol,
+    FeatureLayer) {
+      map = new Map("Divmap", {
+        basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+        center: [-122.45, 37.75], // longitude, latitude
+        zoom: 13
+      });
+      var dinamicLayer = new ArcGISDynamicMapServiceLayer(urlDinamica, {id:"World", opacity:0.5});
+      map.addLayer(dinamicLayer);
+      var capaGrafica = new GraphicsLayer();
+
+
+      var symbol = new SimpleMarkerSymbol();
+       			symbol.style = SimpleMarkerSymbol.STYLE_SQUARE;
+       			symbol.setSize(10);
+       			symbol.setColor(new Color([255,0,0,0.5]));
+
+      var renderer = new SimpleRenderer(symbol);
+
+      	  			capaGrafica.setRenderer(renderer);
+
+                map.addLayer(capaGrafica);
+
+      var miPregunta = new Query();
+      miPregunta.where = "POP > 1500000";
+
+      miPregunta.outFields = ["OBJECTID", "CITY_NAME", "POP"];
+      miPregunta.returnGeometry = true;
+      miPregunta.outSpatialReference = map.spatialReference;
+
+      var miRespuesta = new QueryTask(urlCiudades);
+
+      map.on("click",function(evt){
+        var circulo = new Circle({
+          center: evt.mapPoint,
+          radius: 600000
+        });
+        miPregunta.geometry = circulo;
+        miPregunta.spatialRelationship = Query.SPATIAL_REL_INTERSECTS;
+        var simbolo = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, null, new Color([255,0,0,0.2]));
+
+        var graphico = new Graphic (circulo, simbolo);
+        capaGrafica.clear();
+        capaGrafica.add(graphico);
+
+        miRespuesta.execute(miPregunta, show);
+      });
+
+      function show(fsResultado){
+        var grafcosResultado = fsResultado.features;
+        map.graphics.clear();
+        borrarTabla();
+        if(grafcosResultado.length!=0){
+          var marker = new SimpleMarkerSymbol();
+          marker.setSize(30);
+          marker.setColor(new Color([197, 0, 255, 0.25]));
+          marker.setPath("M16,3.5c-4.142,0-7.5,3.358-7.5,7.5c0,4.143,7.5,18.121,7.5,18.121S23.5,15.143,23.5,11C23.5,6.858,20.143,3.5,16,3.5z M16,14.584c-1.979,0-3.584-1.604-3.584-3.584S14.021,7.416,16,7.416S19.584,9.021,19.584,11S17.979,14.584,16,14.584z");
+          marker.setStyle(SimpleMarkerSymbol.STYLE_PATH);
+          marker.setOffset(0,25);
+          for (var i = 0; i<grafcosResultado.length; i++){
+            grafcosResultado[i].simbolo = marker;
+
+            capaGrafica.add(grafcosResultado[i]);
+            rellenarTabla(grafcosResultado[i]);
+          }
+        } else {
+          alert("No se ha encontrado ninguna entidad que cumpla las condiciones")
+        }
+      };
+      function rellenarTabla(grafico){
+
+        var tabla = document.getElementById("tbody");
+        var atributos = grafico.attributes;
+        var oid = atributos.OBJECTID;
+        var nombre = atributos.CITY_NAME;
+        var poblacion = atributos.POP;
+
+        var fila = document.createElement("tr");
+        var filaData = [oid, nombre, poblacion];
+        for (i in filaData){
+          var celda = document.createElement("td");
+          var textoCelda = document.createTextNode(filaData[i])
+          celda.appendChild(textoCelda);
+          fila.appendChild(celda);
+        }
+        tbody.appendChild(fila);
+      };
+      function borrarTabla(){
+        var tabla = document.getElementById("tbody");
+        if (tabla.firstChild){
+          while(tabla.firstChild){
+            tabla.removeChild(tabla.firstChild);
+          };
+        }
+      };
+    });
+    </script>
+  </head>
+  <body class="claro">
+    <div id = "container">
+      <div id="Divmap"> </div>
+      <div>
+        <table id = "tabla">
+          <thead>
+            <tr>
+              <th> OID </th> <th> NOMBRE </th> <th>POBLACION </th>
+            </tr>
+          </thead>
+          <tbody id = "tbody">
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </body>
+  </html>
